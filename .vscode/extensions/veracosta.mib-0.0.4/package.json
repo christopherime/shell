@@ -1,0 +1,45 @@
+{
+	"name": "mib",
+	"displayName": "SNMP MIB",
+	"description": "Syntx highlighting for SNMP MIB file",
+	"version": "0.0.4",
+	"publisher": "Veracosta",
+	"engines": {
+		"vscode": "^1.5.0"
+	},
+	"categories": [
+		"Languages"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "mib",
+				"aliases": [
+					"MIB",
+					"mib"
+				],
+				"extensions": [
+					".mib"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "mib",
+				"scopeName": "source.mib",
+				"path": "./syntaxes/MIB.tmLanguage"
+			}
+		]
+	},
+	"__metadata": {
+		"id": "ebeb8234-fbce-435e-bf13-b45bc2966582",
+		"publisherId": "c2f0ad56-1fb5-4006-a5d0-6b37bcc24754",
+		"publisherDisplayName": "Veracosta",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"preRelease": false,
+		"installedTimestamp": 1655959980866
+	}
+}

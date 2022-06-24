@@ -1,0 +1,246 @@
+{
+	"name": "vscode-graphql",
+	"version": "0.4.13",
+	"preview": true,
+	"private": true,
+	"license": "MIT",
+	"displayName": "GraphQL",
+	"keywords": [
+		"graphql",
+		"lsp",
+		"graph"
+	],
+	"description": "GraphQL extension for VSCode adds syntax highlighting, validation, and language features like go to definition, hover information and autocompletion for graphql projects. This extension also works with queries annotated with gql tags or comments.",
+	"icon": "assets/images/logo.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/graphql/graphiql",
+		"directory": "packages/vscode-graphql"
+	},
+	"homepage": "https://github.com/graphql/graphiql/blob/main/packages/vscode-graphql/README.md",
+	"galleryBanner": {
+		"color": "#032539",
+		"theme": "dark"
+	},
+	"publisher": "GraphQL",
+	"engines": {
+		"vscode": "^1.63.0"
+	},
+	"categories": [
+		"Programming Languages",
+		"Snippets",
+		"Linters",
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:vscode-graphql.isDebugging",
+		"onCommand:vscode-graphql.contentProvider",
+		"onLanguage:graphql",
+		"workspaceContains:**/.graphqlrc",
+		"workspaceContains:**/.graphqlrc.{json,yaml,yml,js,ts,toml}",
+		"workspaceContains:**/graphql.config.{json,yaml,yml,js,ts,toml}",
+		"workspaceContains:**/package.json"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"languages": [
+			{
+				"id": "graphql",
+				"extensions": [
+					".gql",
+					".graphql",
+					".graphqls"
+				],
+				"aliases": [
+					"GraphQL",
+					"graphql"
+				],
+				"configuration": "./language/language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "graphql",
+				"path": "./grammars/graphql.json",
+				"scopeName": "source.graphql"
+			},
+			{
+				"injectTo": [
+					"source.js",
+					"source.ts",
+					"source.js.jsx",
+					"source.tsx",
+					"source.vue",
+					"source.svelte"
+				],
+				"scopeName": "inline.graphql",
+				"path": "./grammars/graphql.js.json",
+				"embeddedLanguages": {
+					"meta.embedded.block.graphql": "graphql"
+				}
+			},
+			{
+				"injectTo": [
+					"source.reason",
+					"source.ocaml"
+				],
+				"scopeName": "inline.graphql.re",
+				"path": "./grammars/graphql.re.json",
+				"embeddedLanguages": {
+					"meta.embedded.block.graphql": "graphql"
+				}
+			},
+			{
+				"injectTo": [
+					"source.rescript"
+				],
+				"scopeName": "inline.graphql.res",
+				"path": "./grammars/graphql.rescript.json",
+				"embeddedLanguages": {
+					"meta.embedded.block.graphql": "graphql"
+				}
+			},
+			{
+				"injectTo": [
+					"text.html.markdown"
+				],
+				"scopeName": "markdown.graphql.codeblock",
+				"path": "./grammars/graphql.markdown.codeblock.json",
+				"embeddedLanguages": {
+					"meta.embedded.block.graphql": "graphql"
+				}
+			}
+		],
+		"snippets": [
+			{
+				"language": "graphql",
+				"path": "./snippets/graphql.json"
+			}
+		],
+		"icons": {
+			"graphql-logo": {
+				"description": "GraphQL Icon",
+				"default": {
+					"fontPath": "assets/graphql-fonts.woff",
+					"fontCharacter": "\\E900"
+				}
+			},
+			"graphql-loading": {
+				"description": "GraphQL Loading Icon",
+				"default": {
+					"fontPath": "assets/graphql-fonts.woff",
+					"fontCharacter": "\\E902"
+				}
+			},
+			"graphql-failed": {
+				"description": "GraphQL Failed Icon",
+				"default": {
+					"fontPath": "assets/graphql-fonts.woff",
+					"fontCharacter": "\\E901"
+				}
+			}
+		},
+		"configuration": {
+			"title": "VS Code GraphQL",
+			"properties": {
+				"vscode-graphql.debug": {
+					"type": [
+						"boolean",
+						"null"
+					],
+					"default": false,
+					"description": "Enable debug logs"
+				},
+				"vscode-graphql.cacheSchemaFileForLookup": {
+					"type": [
+						"boolean"
+					],
+					"description": "Use a cached file output of your graphql-config schema result for definition lookups, symbols, outline, etc. Disabled by default."
+				},
+				"vscode-graphql.rejectUnauthorized": {
+					"type": [
+						"boolean"
+					],
+					"description": "Fail the request on invalid certificate",
+					"default": true
+				},
+				"graphql-config.load.rootDir": {
+					"type": [
+						"string"
+					],
+					"description": "Base dir for graphql config loadConfig()"
+				},
+				"graphql-config.load.filePath": {
+					"type": [
+						"string"
+					],
+					"description": "filePath for graphql config loadConfig()",
+					"default": null
+				},
+				"graphql-config.load.legacy": {
+					"type": [
+						"boolean"
+					],
+					"description": "legacy mode for graphql config v2 config",
+					"default": null
+				},
+				"graphql-config.load.configName": {
+					"type": [
+						"string"
+					],
+					"description": "optional <configName>.config.js instead of default `graphql`",
+					"default": null
+				},
+				"graphql-config.dotEnvPath": {
+					"type": [
+						"string"
+					],
+					"description": "optional .env load path, if not the default",
+					"default": null
+				}
+			}
+		},
+		"commands": [
+			{
+				"command": "vscode-graphql.restart",
+				"title": "VSCode GraphQL: Manual Restart"
+			},
+			{
+				"command": "vscode-graphql.showOutputChannel",
+				"title": "VSCode GraphQL: Show output channel"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile -- --minify",
+		"compile": "node esbuild",
+		"build-bundles": "npm run compile -- --sourcemap",
+		"vsce:package": "vsce package --yarn",
+		"env:source": "export $(cat .envrc | xargs)",
+		"vsce:publish": "vsce publish --yarn",
+		"open-vsx:publish": "ovsx publish",
+		"release": "npm run vsce:publish && npm run open-vsx:publish"
+	},
+	"devDependencies": {
+		"@types/capitalize": "2.0.0",
+		"@types/vscode": "1.62.0",
+		"esbuild": "0.12.15",
+		"ovsx": "0.3.0",
+		"vsce": "^2.7.0"
+	},
+	"dependencies": {
+		"graphql": "16.0.0-experimental-stream-defer.5",
+		"graphql-language-service-server": "^2.7.27",
+		"vscode-languageclient": "5.2.1"
+	},
+	"__metadata": {
+		"id": "55ef6448-487b-49a0-a66e-4d2d9bb82229",
+		"publisherId": "9d328ac4-bbff-4fd6-95dd-57cb0830ba22",
+		"publisherDisplayName": "GraphQL Foundation",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"preRelease": false,
+		"installedTimestamp": 1655959981441
+	}
+}

@@ -1,0 +1,166 @@
+{
+	"name": "LogFileHighlighter",
+	"displayName": "Log File Highlighter",
+	"icon": "content/appicon.png",
+	"description": "Adds color highlighting to log files to make it easier to follow the flow of log events and identify problems.",
+	"categories": [
+		"Other"
+	],
+	"license": "MIT",
+	"version": "2.16.0",
+	"bugs": {
+		"url": "https://github.com/emilast/vscode-logfile-highlighter/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/emilast/vscode-logfile-highlighter.git"
+	},
+	"engines": {
+		"vscode": "^1.42.0"
+	},
+	"publisher": "emilast",
+	"extensionKind": [
+		"ui",
+		"workspace"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"languages": [
+			{
+				"id": "log",
+				"aliases": [
+					"Log File",
+					"log"
+				],
+				"extensions": [
+					".log"
+				]
+			}
+		],
+		"grammars": [
+			{
+				"language": "log",
+				"scopeName": "text.log",
+				"path": "./syntaxes/log.tmLanguage"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "The vscode-logfile-highlighter configuration.",
+			"properties": {
+				"logFileHighlighter.customPatterns": {
+					"type": "array",
+					"items": {
+						"title": "Custom patterns to highlight.",
+						"description": "A custom pattern that is highlighted with the given foreground color.",
+						"type": "object",
+						"properties": {
+							"pattern": {
+								"pattern": "^[^$|\\s]",
+								"type": "string",
+								"title": "The pattern that will be highlighted.",
+								"description": "Either the exact string to highlight, or a regular expression pattern."
+							},
+							"foreground": {
+								"format": "color-hex",
+								"type": "string",
+								"title": "Foreground color",
+								"description": "The foreground color that will be used for highlighting."
+							},
+							"background": {
+								"format": "color-hex",
+								"type": "string",
+								"title": "Background color",
+								"description": "The background color that will be used for highlighting."
+							},
+							"fontWeight": {
+								"type": "string",
+								"title": "CSS font weight",
+								"description": "Font weight. Examples: 'normal', 'bold'"
+							},
+							"fontStyle": {
+								"type": "string",
+								"title": "CSS font style",
+								"description": "Font style. Examples: 'normal', 'italic'"
+							},
+							"border": {
+								"type": "string",
+								"title": "CSS border definition",
+								"description": "Border definition. Example: '4px dotted blue'."
+							},
+							"borderRadius": {
+								"type": "string",
+								"title": "CSS border radius",
+								"description": "Border radius, defines how rounded a border is. Example: '3px'"
+							},
+							"letterSpacing": {
+								"type": "string",
+								"title": "CSS letter spacing",
+								"description": "Letter spacing, can be used for adjusting the horizontal distance between characters of the matched text. Example: '3px'"
+							},
+							"overviewColor": {
+								"type": "string",
+								"title": "Marker color in the ruler",
+								"description": "Marker color in the ruler to the right in the text editor window. Example: 'yellow'"
+							},
+							"overviewRulerLane": {
+								"type": "string",
+								"title": "Placement of the ruler marker",
+								"description": "Allows for configuring the placement of the ruler marker, if 'overviewColor' is set. Allowed dalues: Example: 'Left', 'Right', 'Center', 'Full'"
+							},
+							"textDecoration": {
+								"type": "string",
+								"title": "CSS text decoration",
+								"description": "Adds additional decorations to matched text. Example: 'underline overline dotted red'"
+							}
+						},
+						"required": [
+							"pattern"
+						]
+					},
+					"title": "Custom highlighting patterns.",
+					"description": "An array of custom patterns that shall be highlighted."
+				}
+			}
+		}
+	},
+	"activationEvents": [
+		"onLanguage:log"
+	],
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"preinstall": "npx npm-force-resolutions",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"integrationtest": "node ./node_modules/vscode/bin/test",
+		"tslint": "tslint --project ./",
+		"unittest": "node out/test/testRunner.js -c jasmine.unittest.json"
+	},
+	"devDependencies": {
+		"@types/jasmine": "^3.10.6",
+		"@types/node": "^17.0.41",
+		"jasmine": "^3.10.6",
+		"jasmine-core": "^3.10.6",
+		"minimist": "^1.2.6",
+		"tslint": "^6.1.3",
+		"typescript": "^4.7.3",
+		"vscode": "^1.1.37"
+	},
+	"dependencies": {
+		"moment": "^2.29.3"
+	},
+	"resolutions": {
+		"minimist": "^1.2.6"
+	},
+	"__metadata": {
+		"id": "e8b488af-fccf-4adf-b60c-fc7455bea107",
+		"publisherId": "4534c4fe-f5e7-4c04-943b-3a6dad3e61dc",
+		"publisherDisplayName": "Emil Åström",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"preRelease": false,
+		"installedTimestamp": 1655959983183
+	}
+}
