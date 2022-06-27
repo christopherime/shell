@@ -1,10 +1,29 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export EDITOR="nvim"
+export EDITOR="vim"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 eval $(thefuck --alias)
+
+export GETDEV="$HOME/Developement"
+export GETHOME="$HOME/Documents"
+export SHELLBACK="$GETDEV/shell"
+
+export DATA="/Volumes/data"
+
+alias shellback="cp ~/.zshrc $SHELLBACK && cd $SHELLBACK && git add . && git commit -m "Backup config" && git push && cd ~"
+
+# Alias for ansible actions
+alias play="ansible-playbook"
+alias avault="ansible-vault"
+alias aginit="ansible-galaxy init"
+
+# Alias for terraform actions
+alias tinit="terraform init"
+alias tplan="terraform plan"
+alias tapply="terraform apply"
+alias tdestroy="terraform destroy"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -83,6 +102,7 @@ plugins=(
 	helm
 	heroku
 	kubectl
+	minikube
 	macos
 	nmap
 	pip
@@ -93,6 +113,9 @@ plugins=(
 	ansible
 	vscode
 	lol
+	encode64
+	extract
+	copypath
 	zsh-syntax-highlighting
 )
 
@@ -123,8 +146,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-alias gethome="cd /mnt/c/Users/chris"
 
 
 # Dracula Theme (for zsh-syntax-highlighting)
