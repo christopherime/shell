@@ -1,6 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/christopherime/Developement/shell'
-make: Leaving directory `/Users/christopherime/Developement/shell'
- 
-make: *** No targets specified and no makefile found.  Stop.
-
